@@ -6,10 +6,6 @@
             "type": "string",
             "defaultValue": "centralus"
         },
-        "resourceGroup": {
-            "type": "string",
-            "defaultValue": "rmg-ops"
-        },
         "networkInterfaceName": {
             "type": "string",
             "defaultValue": "dg-arm-windows2016se789"
@@ -76,7 +72,7 @@
         }
     },
     "variables": {
-        "nsgId": "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[parameters('virtualNetworkId')]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
@@ -100,7 +96,7 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
                             }
                         }
                     }
