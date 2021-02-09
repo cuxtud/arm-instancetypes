@@ -59,7 +59,8 @@
             "defaultValue": "deepti"
         },
         "adminPassword": {
-            "type": "secureString"
+            "type": "secureString",
+            "defaultValue": "<%=customOptions.fpassword%>"
         },
         "patchMode": {
             "type": "string",
